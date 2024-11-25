@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diana Apotheke - Ihre Apotheke in Berlin und Oranienburg</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        :root {
+            --primary: #ed150d;
+            --dark: #2b2927;
+            --gray: #8b8f92;
+            --white: #ffffff;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1920px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-image {
+            width: 60px;
+            height: 60px;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-image:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+
+        main {
+            margin-top: 120px;
+            padding: 2rem;
+            flex: 1 0 auto;
+        }
+
+        .hero {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .locations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .location-card {
+            background-color: var(--white);
+            border: 2px solid var(--gray);
+            border-radius: 10px;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .location-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .intro {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+            color: var(--dark);
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo-container {
+                margin-bottom: 0.5rem;
+            }
+
+            .locations {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .location-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            main {
+                margin-top: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="Diana Apotheke Logo.png" alt="Diana Apotheke Logo" class="logo-image">
+                <div class="logo-text">Diana Apotheke</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Willkommen bei Diana Apotheke</h1>
+            <p>Ihre vertrauenswürdige Apotheke in Berlin und Oranienburg</p>
+        </section>
+
+        <section class="intro">
+            <h2>Über uns</h2>
+            <p>Seit Jahren setzen wir uns für Ihre Gesundheit ein. Mit zwei Standorten in Berlin und Oranienburg bieten wir Ihnen kompetente pharmazeutische Beratung und einen umfassenden Service. Unser erfahrenes Team steht Ihnen mit Rat und Tat zur Seite.</p>
+        </section>
+
+        <section class="locations">
+            <div class="location-card" onclick="location.href='https://maps.app.goo.gl/x6ffdnMNCHSxvqCN8'">
+                <h3>Berlin Standort</h3>
+                <p>Schlossstr. 116<br>12163 Berlin</p>
+            </div>
+
+            <div class="location-card" onclick="location.href='https://maps.app.goo.gl/5pHzYAWQdPMfygga8'">
+                <h3>Oranienburg Standort</h3>
+                <p>Friedensstr. 8<br>16515 Oranienburg</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Diana Apotheke. Alle Rechte vorbehalten.</p>
+    </footer>
+</body>
+</html>
