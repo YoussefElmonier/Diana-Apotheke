@@ -1,180 +1,15 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
+    <link rel="icon" type="image/png" href="Diana Apotheke Logo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diana Apotheke - Ihre Apotheke in Berlin und Oranienburg</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        :root {
-            --primary: #ed150d;
-            --dark: #2b2927;
-            --gray: #8b8f92;
-            --white: #ffffff;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
-        body {
-            background-color: var(--white);
-            color: var(--dark);
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1920px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-image {
-            width: 60px;
-            height: 60px;
-            padding: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo-image:hover {
-            transform: scale(1.05);
-        }
-
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--white);
-        }
-
-        main {
-            margin-top: 120px;
-            padding: 2rem;
-            flex: 1 0 auto;
-        }
-
-        .hero {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 4rem 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .locations {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .location-card {
-            background-color: var(--white);
-            border: 2px solid var(--gray);
-            border-radius: 10px;
-            padding: 2rem;
-            width: 300px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .location-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .location-card h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .intro {
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
-            text-align: center;
-            color: var(--dark);
-            animation: slideUp 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            text-align: center;
-            padding: 1rem;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .logo-container {
-                margin-bottom: 0.5rem;
-            }
-
-            .locations {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .location-card {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            main {
-                margin-top: 140px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <div class="header-content">
@@ -193,18 +28,157 @@
 
         <section class="intro">
             <h2>Über uns</h2>
-            <p>Seit Jahren setzen wir uns für Ihre Gesundheit ein. Mit zwei Standorten in Berlin und Oranienburg bieten wir Ihnen kompetente pharmazeutische Beratung und einen umfassenden Service. Unser erfahrenes Team steht Ihnen mit Rat und Tat zur Seite.</p>
+            <p>Seit Jahren setzen wir uns für Ihre Gesundheit ein. Mit zwei Standorten in Berlin und Oranienburg bieten
+                wir Ihnen kompetente pharmazeutische Beratung und einen umfassenden Service. Unser erfahrenes Team steht
+                Ihnen mit Rat und Tat zur Seite.</p>
         </section>
 
         <section class="locations">
-            <div class="location-card" onclick="location.href='https://maps.app.goo.gl/x6ffdnMNCHSxvqCN8'">
+            <div class="location-card">
                 <h3>Berlin Standort</h3>
                 <p>Schlossstr. 116<br>12163 Berlin</p>
+                <div class="contact-info">
+                    <a href="tel:030797884300" class="contact-item" style="animation-delay: 0.1s;">
+                        <i class="fas fa-phone contact-icon"></i>
+                        Tel.: 030 797 88 430
+                    </a>
+                    <a href="fax:030797843630" class="contact-item" style="animation-delay: 0.2s;">
+                        <i class="fas fa-fax contact-icon"></i>
+                        Fax: 030 797 84 363
+                    </a>
+                    <a href="mailto:idas1@live.de" class="contact-item" style="animation-delay: 0.3s;">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        idas1@live.de
+                    </a>
+                    <a href="https://maps.app.goo.gl/x6ffdnMNCHSxvqCN8" target="_blank" class="contact-item"
+                        style="animation-delay: 0.4s;">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        Standort auf Maps anzeigen
+                    </a>
+                </div>
+                <button class="button" onclick="window.open('https://www.diana-apo-schlossstrasse.de', '_blank')">
+                    <div class="outline"></div>
+                    <div class="state state--default">
+                      <div class="icon">
+                        <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g style="filter: url(#shadow)">
+                            <path d="M14.2199 21.63C13.0399 21.63 11.3699 20.8 10.0499 16.83L9.32988 14.67L7.16988 13.95C3.20988 12.63 2.37988 10.96 2.37988 9.78001C2.37988 8.61001 3.20988 6.93001 7.16988 5.60001L15.6599 2.77001C17.7799 2.06001 19.5499 2.27001 20.6399 3.35001C21.7299 4.43001 21.9399 6.21001 21.2299 8.33001L18.3999 16.82C17.0699 20.8 15.3999 21.63 14.2199 21.63ZM7.63988 7.03001C4.85988 7.96001 3.86988 9.06001 3.86988 9.78001C3.86988 10.5 4.85988 11.6 7.63988 12.52L10.1599 13.36C10.3799 13.43 10.5599 13.61 10.6299 13.83L11.4699 16.35C12.3899 19.13 13.4999 20.12 14.2199 20.12C14.9399 20.12 16.0399 19.13 16.9699 16.35L19.7999 7.86001C20.3099 6.32001 20.2199 5.06001 19.5699 4.41001C18.9199 3.76001 17.6599 3.68001 16.1299 4.19001L7.63988 7.03001Z" fill="currentColor"></path>
+                            <path d="M10.11 14.4C9.92005 14.4 9.73005 14.33 9.58005 14.18C9.29005 13.89 9.29005 13.41 9.58005 13.12L13.16 9.53C13.45 9.24 13.93 9.24 14.22 9.53C14.51 9.82 14.51 10.3 14.22 10.59L10.64 14.18C10.5 14.33 10.3 14.4 10.11 14.4Z" fill="currentColor"></path>
+                          </g>
+                          <defs>
+                            <filter id="shadow">
+                              <fedropshadow dx="0" dy="1" stdDeviation="0.6" flood-opacity="0.5"></fedropshadow>
+                            </filter>
+                          </defs>
+                        </svg>
+                      </div>
+                      <p>
+                        <span style="--i:0">W</span>
+                        <span style="--i:1">e</span>
+                        <span style="--i:2">b</span>
+                        <span style="--i:3">s</span>
+                        <span style="--i:4">i</span>
+                        <span style="--i:5">t</span>
+                        <span style="--i:6">e</span>
+                      </p>
+                    </div>
+                    <div class="state state--sent">
+                      <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="1em" width="1em" stroke-width="0.5px" stroke="black">
+                          <g style="filter: url(#shadow)">
+                            <path fill="currentColor" d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z"></path>
+                            <path fill="currentColor" d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z"></path>
+                          </g>
+                        </svg>
+                      </div>
+                      <p>
+                        <span style="--i:5">L</span>
+                        <span style="--i:6">a</span>
+                        <span style="--i:7">d</span>
+                        <span style="--i:8">e</span>
+                        <span style="--i:9">n</span>
+                      </p>
+                    </div>
+                  </button>
             </div>
 
-            <div class="location-card" onclick="location.href='https://maps.app.goo.gl/5pHzYAWQdPMfygga8'">
+            <div class="location-card">
                 <h3>Oranienburg Standort</h3>
                 <p>Friedensstr. 8<br>16515 Oranienburg</p>
+                <div class="contact-info">
+                    <a href="tel:03301574875" class="contact-item" style="animation-delay: 0.1s;">
+                        <i class="fas fa-phone contact-icon"></i>
+                        Tel.: 03301 574 875
+                    </a>
+                    <a href="fax:03301574872" class="contact-item" style="animation-delay: 0.2s;">
+                        <i class="fas fa-fax contact-icon"></i>
+                        Fax: 03301 574 872
+                    </a>
+                    <a href="mailto:idao@live.de" class="contact-item" style="animation-delay: 0.3s;">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        idao@live.de
+                    </a>
+                    <a href="https://maps.app.goo.gl/5pHzYAWQdPMfygga8" target="_blank" class="contact-item"
+                        style="animation-delay: 0.4s;">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        Standort auf Maps anzeigen
+                    </a>
+                </div>
+                <button class="button" onclick="window.open('https://www.diana-apo-oranienpark.de', '_blank')">
+                    <div class="outline"></div>
+                    <div class="state state--default">
+                        <div class="icon">
+                            <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g style="filter: url(#shadow)">
+                                    <path
+                                        d="M14.2199 21.63C13.0399 21.63 11.3699 20.8 10.0499 16.83L9.32988 14.67L7.16988 13.95C3.20988 12.63 2.37988 10.96 2.37988 9.78001C2.37988 8.61001 3.20988 6.93001 7.16988 5.60001L15.6599 2.77001C17.7799 2.06001 19.5499 2.27001 20.6399 3.35001C21.7299 4.43001 21.9399 6.21001 21.2299 8.33001L18.3999 16.82C17.0699 20.8 15.3999 21.63 14.2199 21.63ZM7.63988 7.03001C4.85988 7.96001 3.86988 9.06001 3.86988 9.78001C3.86988 10.5 4.85988 11.6 7.63988 12.52L10.1599 13.36C10.3799 13.43 10.5599 13.61 10.6299 13.83L11.4699 16.35C12.3899 19.13 13.4999 20.12 14.2199 20.12C14.9399 20.12 16.0399 19.13 16.9699 16.35L19.7999 7.86001C20.3099 6.32001 20.2199 5.06001 19.5699 4.41001C18.9199 3.76001 17.6599 3.68001 16.1299 4.19001L7.63988 7.03001Z"
+                                        fill="currentColor"></path>
+                                    <path
+                                        d="M10.11 14.4C9.92005 14.4 9.73005 14.33 9.58005 14.18C9.29005 13.89 9.29005 13.41 9.58005 13.12L13.16 9.53C13.45 9.24 13.93 9.24 14.22 9.53C14.51 9.82 14.51 10.3 14.22 10.59L10.64 14.18C10.5 14.33 10.3 14.4 10.11 14.4Z"
+                                        fill="currentColor"></path>
+                                </g>
+                                <defs>
+                                    <filter id="shadow">
+                                        <fedropshadow dx="0" dy="1" stdDeviation="0.6" flood-opacity="0.5">
+                                        </fedropshadow>
+                                    </filter>
+                                </defs>
+                            </svg>
+                        </div>
+                        <p>
+                            <span style="--i:0">W</span>
+                            <span style="--i:1">e</span>
+                            <span style="--i:2">b</span>
+                            <span style="--i:3">s</span>
+                            <span style="--i:4">i</span>
+                            <span style="--i:5">t</span>
+                            <span style="--i:6">e</span>
+                        </p>
+                    </div>
+                    <div class="state state--sent">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="1em"
+                                width="1em" stroke-width="0.5px" stroke="black">
+                                <g style="filter: url(#shadow)">
+                                    <path fill="currentColor"
+                                        d="M12 22.75C6.07 22.75 1.25 17.93 1.25 12C1.25 6.07 6.07 1.25 12 1.25C17.93 1.25 22.75 6.07 22.75 12C22.75 17.93 17.93 22.75 12 22.75ZM12 2.75C6.9 2.75 2.75 6.9 2.75 12C2.75 17.1 6.9 21.25 12 21.25C17.1 21.25 21.25 17.1 21.25 12C21.25 6.9 17.1 2.75 12 2.75Z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </div>
+                        <p>
+                            <span style="--i:5">L</span>
+                            <span style="--i:6">a</span>
+                            <span style="--i:7">d</span>
+                            <span style="--i:8">e</span>
+                            <span style="--i:9">n</span>
+                        </p>
+                    </div>
+                </button>
             </div>
         </section>
     </main>
@@ -213,4 +187,5 @@
         <p>© 2024 Diana Apotheke. Alle Rechte vorbehalten.</p>
     </footer>
 </body>
+
 </html>
