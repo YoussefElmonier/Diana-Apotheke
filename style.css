@@ -1,4 +1,7 @@
-
+@font-face {
+    font-family: 'diana';
+    src: url('Kugile_Demo.ttf');
+}
 * {
     margin: 0;
     padding: 0;
@@ -62,10 +65,9 @@ header {
 }
 
 .logo-text {
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 2rem;
     color: var(--white);
-    font-family: 'Poppins', sans-serif;
+    font-family: 'diana';
 }
 
 main {
