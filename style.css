@@ -375,4 +375,10 @@ footer {
         color: var(--white);
         font-family: 'diana';
     }
+    .logo-image {
+        width: 70px;
+        height: 70px;
+        padding: 5px;
+        transition: transform 0.3s ease;
+    }
 }
