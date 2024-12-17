@@ -304,7 +304,7 @@ main {
 
 .animated-button:hover {
   box-shadow: 0 0 0 12px transparent;
-  color: #212121;
+  color: #ffffff;
   border-radius: 12px;
 }
 
@@ -321,7 +321,7 @@ main {
 }
 
 .animated-button:hover svg {
-  fill: #212121;
+  fill: #ffffff;
 }
 
 .animated-button:active {
