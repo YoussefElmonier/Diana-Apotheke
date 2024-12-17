@@ -177,7 +177,7 @@ main {
 
 .contact-icon {
     font-size: 1.2rem;
-    color: var(--primary);
+    color: #c00202;
 }
 
 .contact-item .fa-map-marker-alt {
@@ -263,6 +263,7 @@ main {
   cursor: pointer;
   overflow: hidden;
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-top: 10px;
 }
 
 .animated-button svg {
