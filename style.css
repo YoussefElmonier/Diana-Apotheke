@@ -76,18 +76,36 @@ main {
     flex: 1 0 auto;
     font-family: 'Poppins', sans-serif;
 }
-
 .hero {
-    background: linear-gradient(to right, #929699, #2b2a28, #fe0000);
+    background: linear-gradient(
+        45deg,
+        #929699,
+        #2b2a28,
+        #fe0000,
+        #2b2a28,
+        #929699
+    );
+    background-size: 400% 400%;
     color: var(--white);
     padding: 4rem 2rem;
     text-align: center;
     margin-bottom: 2rem;
     border-radius: 30px;
-    animation: fadeIn 1s ease-in;
+    animation: gradientMove 15s ease infinite;
     font-family: 'Poppins', sans-serif;
 }
 
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 .locations {
     display: flex;
     flex-wrap: wrap;
@@ -95,13 +113,10 @@ main {
     justify-content: center;
     margin-top: 2rem;
 }
-
 .location-card {
     background-color: var(--white);
-    /* Remove the solid border */
-    border: none;
-    /* Add padding for the gradient border */
-    padding: calc(2rem + 2px); /* 2rem original padding + 2px for border */
+    border: 2px solid transparent;
+    padding: calc(2rem + 2px);
     width: 350px;
     text-align: center;
     transition: transform 0.3s ease;
@@ -109,12 +124,32 @@ main {
     font-weight: bold;
     border-radius: 25px;
     
-    /* Create gradient border using background */
+    /* Animated gradient border */
     background: 
         linear-gradient(var(--white), var(--white)) padding-box,
-        linear-gradient(to right, #929699, #2b2a28, #fe0000) border-box;
+        linear-gradient(
+            45deg,
+            #929699 0%,
+            #2b2a28 25%,
+            #fe0000 50%,
+            #2b2a28 75%,
+            #fe0000  100%
+        ) border-box;
+    background-size: 400% 400%;
     background-clip: padding-box, border-box;
-    border: 2px solid transparent;
+    animation: borderAnimation 12s ease infinite;
+}
+
+@keyframes borderAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .location-card:hover {
