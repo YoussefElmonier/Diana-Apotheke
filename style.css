@@ -85,6 +85,7 @@ main {
         #7d8e54,
         #4c5734,
         #cdd5b4
+        
     );
     background-size: 400% 400%;
     color: var(--white);
@@ -94,8 +95,68 @@ main {
     border-radius: 30px;
     animation: gradientMove 15s ease infinite;
     font-family: 'Poppins', sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
 }
-
+h1{
+    text-align:left;
+    text-transform: uppercase;
+    color: #F1FAEE; 
+    font-size: 4rem;
+  }
+  
+  .roller{
+    height: 4.125rem;
+    line-height: 4rem;
+    position: relative;
+    overflow: hidden; 
+    width: 140%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: #1D3557;
+  }
+  
+  
+  #spare-time{
+    font-size: 1rem;
+    font-style: italic;
+    letter-spacing: 1rem;
+    margin-top: 0;
+    color: #A8DADC;
+    
+  }
+  
+  .roller #rolltext {
+    position: absolute;
+    top: 0;
+    animation: slide 8s infinite;  
+  }
+  
+  @keyframes slide {
+    0%{
+      top:0;
+    }
+    20%{
+      top: -4rem;    
+    }
+    40%{
+      top: -8rem;
+    }
+    60%{
+      top: -12.25rem;
+    }
+    80%{
+      top: -16.25rem;
+    }
+    100%{
+      top: -20.25rem;
+    }
+  }
+  
 @keyframes gradientMove {
     0% {
         background-position: 0% 50%;
@@ -394,7 +455,41 @@ footer {
         text-align: center;
         color: #212121;
     }
-
+    h1{
+        text-align:left;
+        text-transform: uppercase;
+        color: #F1FAEE; 
+        font-size: 2.125rem;
+      }
+        
+        .roller{
+        height: 3rem; 
+        line-height: 2.125rem;  
+        }
+        
+        #spare-time {
+          font-size: 1rem;
+          letter-spacing: 0.1rem;
+        }
+        
+        .roller #rolltext {  
+        animation: slide-mob 8s infinite;  
+      }
+      @keyframes slide-mob  {
+        0%{
+          top:0;
+        }
+        25%{
+          top: -4rem;    
+        }
+        50%{
+          top: -8rem;
+        }
+        75%{
+          top: -12.25rem;
+        }
+      }
+        
     .logo-container {
         margin-bottom: 0.5rem;
     }

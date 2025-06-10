@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -11,6 +12,35 @@
 </head>
 
 <body>
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/SplitText.min.js"></script>
+<script>
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+  
+    const hero = document.querySelector('.hero');
+    const headings = hero.querySelectorAll('h1, p');
+  
+    headings.forEach(el => {
+      const split = new SplitText(el, { type: "chars" });
+      gsap.set(split.chars, { opacity: 0, y: 40 });
+  
+      gsap.to(split.chars, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none none",
+          once: true
+        },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        stagger: 0.05
+      });
+    });
+  </script>
+  
     <header>
         <div class="header-content">
             <div class="logo-container">
@@ -22,10 +52,15 @@
 
     <main>
         <section class="hero">
-            <h1>Willkommen bei</h1>
-            <h1>Diana Apotheke</h1>
-            <p>Ihre vertrauenswürdige Apotheke in Berlin und Oranienburg</p>
-        </section>
+            <h1>Willkommen bei<div class="roller">
+                <span id="rolltext">Diana Apotheke<br/>
+                Ihre<br/>
+                uverlässig<br/>
+                in Berlin und Oranienburg<br/>
+                </div>
+                </h1>
+            </div>
+          </section>
 
         <section class="intro">
             <h2>Über uns</h2>
@@ -45,11 +80,11 @@
                     </a>
                     <a href="fax:030797843630" class="contact-item" style="animation-delay: 0.2s;">
                         <i class="fas fa-fax contact-icon"></i>
-                        Fax: 030 797 84 363
+                        Fax: +49 30 797 88 430
                     </a>
                     <a href="mailto:info.schlossstrasse@diana-apotheken.de " class="contact-item" style="animation-delay: 0.3s;">
                         <i class="fas fa-envelope contact-icon"></i>
-                        Diana@scloßstr.de
+                        Schloßstraße
                     </a>
                     <a href="https://maps.app.goo.gl/x6ffdnMNCHSxvqCN8" target="_blank" class="contact-item"
                         style="animation-delay: 0.4s;">
@@ -63,7 +98,7 @@
                     </a>
                 </div>
                 <div class="container">
-                    <button class="animated-button" onclick="window.open('https://www.diana-apo-schlossstrasse.de', '_blank')">
+                    <button class="animated-button" onclick="window.open('https://www.diana-Apotheken.de', '_blank')">
                         <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                             <path
                             d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
@@ -95,7 +130,7 @@
                     </a>
                     <a href="mailto:info.oranienpark@diana-apotheken.de" class="contact-item" style="animation-delay: 0.3s;">
                         <i class="fas fa-envelope contact-icon"></i>
-                    Diana@Oranienburg.de
+                    Oranienburg
                     </a>
                     <a href="https://maps.app.goo.gl/5pHzYAWQdPMfygga8" target="_blank" class="contact-item"
                         style="animation-delay: 0.4s;">
@@ -109,7 +144,7 @@
                 </a>
                 </div>
                 <div class="container">
-                    <button class="animated-button" onclick="window.open('https://www.diana-apo-oranienpark.de', '_blank')">
+                    <button class="animated-button" onclick="window.open('https://www.diana-apotheken.com', '_blank')">
                         <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
                             <path
                             d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
