@@ -471,7 +471,7 @@ footer {
         padding: 10px;
         transition: transform 0.3s ease;
     }
-    .hero{
+    /* .hero{
       color: var(--white);
       padding: 1rem 2rem;
       margin-bottom: 4rem;
@@ -481,8 +481,5 @@ footer {
       align-items:center;
       justify-content:center;
       text-align:center;
-    } 
-    .hero h1{
-      width: 90%;
-    }
+    }  */
 }
