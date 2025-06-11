@@ -409,11 +409,13 @@ footer {
         text-transform: uppercase;
         font-size: 2.145rem;
         font-weight: bolder;
+        font-family: 'swiz';
       }
         
         .roller{
         height: 3rem; 
         line-height: 2.125rem;  
+        font-family: 'swiz';
         }
         
         #spare-time {
@@ -423,6 +425,7 @@ footer {
         
         .roller #rolltext {  
         animation: slide-mob 8s infinite;  
+        font-family: 'swiz';
       }
       @keyframes slide-mob  {
         0%{
@@ -456,7 +459,7 @@ footer {
         margin-top: 140px;
     }
     .logo-text {
-        font-size: 1.5rem;
+        font-size: 1.55rem;
         color: #212121;;
         font-family: 'diana';
         font-weight: bolder;
