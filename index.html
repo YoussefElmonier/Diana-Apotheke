@@ -15,6 +15,7 @@
 <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/gsap@3/dist/SplitText.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 <script>
     gsap.registerPlugin(ScrollTrigger, SplitText);
   
@@ -48,8 +49,11 @@
                 <div class="logo-text">DIANA APOTHEKEN</div>
             </div>
         </div>
+        <div class="gradient">
+            
+        </div>
     </header>
-
+    
     <main>
         <section class="hero">
             <h1>Willkommen bei<div class="roller">
@@ -98,20 +102,10 @@
                     </a>
                 </div>
                 <div class="container">
-                    <button class="animated-button" onclick="window.open('https://www.diana-Apotheken.de', '_blank')">
-                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                            ></path>
-                        </svg>
-                        <span class="text">Website</span>
-                        <span class="circle"></span>
-                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                            ></path>
-                        </svg>
-                    </button>
+                    <button class="bg-[#1b2013] text-[#d3dabc] border border-[#7d8e54] border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"onclick="window.open('https://www.diana-apotheken.com', '_blank')">
+                        <span class="bg-[#4c5734] shadow-[#4c5734] absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+                        Website
+                      </button>
                 </div>
                         
             </div>
@@ -144,27 +138,19 @@
                 </a>
                 </div>
                 <div class="container">
-                    <button class="animated-button" onclick="window.open('https://www.diana-apotheken.com', '_blank')">
-                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                            ></path>
-                        </svg>
-                        <span class="text">Website</span>
-                        <span class="circle"></span>
-                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                            d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                            ></path>
-                        </svg>
-                    </button>
+                    <button class="bg-[#1b2013] text-[#d3dabc] border border-[#7d8e54] border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"onclick="window.open('https://www.diana-apotheken.de', '_blank')">
+                        <span class="bg-[#4c5734] shadow-[#4c5734] absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
+                        Website
+                      </button>
                 </div>              
             </div>
         </section>
     </main>
-
-    <footer>
-        <p>© 2025 Diana Apotheke. Alle Rechte vorbehalten.</p>
+    
+    <footer class="footer">
+        <div class="gradient2">
+        </div>
+        <p>© 2025 Diana Apotheken. Alle Rechte Vorbehalten.</p>
     </footer>
 </body>
 

@@ -36,14 +36,43 @@ body {
 header {
     background-color: #acba87;
     color: var(--white);
-    padding: 1rem;
+    padding-bottom: 0rem;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
+.gradient {
+  width: 120%;
+  height: 50px;
+  background: linear-gradient(
+    to top,
+    #1b2013 0%,
+    #1b2013 25%,
+    #4c5734 25%,
+    #4c5734 50%,
+    #7d8e54 50%,
+    #7d8e54 75%,
+    #919e6e 75%,
+    #acba87 100%
+  );
+}
+.gradient2 {
+  width: 120%;
+  height: 30px;
+  background: linear-gradient(
+    to top,
+    #1b2013 0%,
+    #1b2013 25%,
+    #4c5734 25%,
+    #4c5734 50%,
+    #7d8e54 50%,
+    #7d8e54 75%,
+    #b2bb99 75%,
+    #e3eccc 100%
+  );
+}
 .header-content {
     max-width: 1920px;
     margin: 0 auto;
@@ -70,9 +99,11 @@ header {
 }
 
 .logo-text {
-    font-size: 2.1rem;
+    font-size: 3rem;
     color: #1b2013;
     font-family: 'diana';
+    font-weight: bolder;
+    padding-top: 25px;
 }
 
 main {
@@ -182,7 +213,7 @@ h1{
     transition: transform 0.3s ease;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    border-radius: 35px;
+    border-radius: 28px;
     
     /* Animated gradient border */
     background: 
@@ -218,9 +249,16 @@ h1{
 }
 
 .location-card h3 {
-    color: #ffffff;
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
+    color: #1b2013;
+    font-family: 'swiz';
+    font-weight: bolder;
     
+}
+.location-card p{
+  color: #1b2013;
+  font-family: 'swiz';
+  font-weight: bolder;
 }
 .intro {
     max-width: 800px;
@@ -228,7 +266,8 @@ h1{
     text-align: center;
     color:#212121;
     animation: slideUp 1s ease-out;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'swiz';
+    font-family: bolder;
     
 }
 .intro p {
@@ -239,17 +278,19 @@ h1{
   margin-inline-end: 0px;
   unicode-bidi: isolate;
   color: #2a3122; 
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
+  font-family: 'swiz';
+  font-weight: bolder;
 }
 .intro h2 {
   color: #2a3122; 
+  font-family: 'swiz';
   font-weight: bolder;
+  font-size: 2em;
 }
 .hero p{
   color: #2a3122; 
   font-family: 'swiz';
-  font-weight: bold;
+  font-weight: bolder;
 }
 .contact-info {
     margin-top: 1rem;
@@ -259,12 +300,12 @@ h1{
 }
 
 .contact-item {
-  font-family: 'Poppins', sans-serif;
-    font-weight: bold;
+  color: #1b2013;
+  font-family: 'swiz';
+  font-weight: bolder;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #ffffff;
     text-decoration: none;
     transition: color 0.3s ease;
     justify-content: center;
@@ -273,7 +314,7 @@ h1{
 }
 
 .contact-item:hover {
-    color: var(--primary);
+    color: white;
 }
 
 .contact-icon {
@@ -347,107 +388,18 @@ h1{
   align-items: center;/* Full height for vertical centering */
 }
 
-.animated-button {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 16px 36px;
-  border: 4px solid;
-  border-color: transparent;
-  font-size: 16px;
-  background-color: inherit;
-  border-radius: 100px;
-  font-weight: 600;
-  color: #4c5734;
-  box-shadow: 0 0 0 2px #4c5734;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  margin-top: 10px;
-}
-
-.animated-button svg {
-  position: absolute;
-  width: 24px;
-  fill: #4c5734;
-  z-index: 9;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.animated-button .arr-1 {
-  right: 16px;
-}
-
-.animated-button .arr-2 {
-  left: -25%;
-}
-
-.animated-button .circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: #4c5734;
-  border-radius: 50%;
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.animated-button .text {
-    color: #4c5734;
-  position: relative;
-  z-index: 1;
-  transform: translateX(-12px);
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.animated-button:hover {
-  box-shadow: 0 0 0 12px transparent;
-  color: #ffffff;
-  border-radius: 12px;
-}
-
-.animated-button:hover .arr-1 {
-  right: -25%;
-}
-
-.animated-button:hover .arr-2 {
-  left: 16px;
-}
-
-.animated-button:hover .text {
-    color: #ffffff;
-  transform: translateX(12px);
-}
-
-.animated-button:hover svg {
-  fill: #ffffff;
-}
-
-.animated-button:active {
-  scale: 0.95;
-  box-shadow: 0 0 0 4px rgb(172, 0, 0);
-}
-
-.animated-button:hover .circle {
-  width: 220px;
-  height: 220px;
-  opacity: 1;
-}
-
 
 footer {
     background-color: var(--dark);
-    color: var(--white);
     text-align: center;
-    padding: 1rem;
     flex-shrink: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'swiz';
 }
-
+.footer p{
+  font-family: 'swiz';
+  font-weight: 600;
+  color: #212121;
+}
 @media (max-width: 768px) {
     .header-content {
         flex-direction: row;
@@ -506,14 +458,16 @@ footer {
         margin-top: 140px;
     }
     .logo-text {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         color: #212121;;
         font-family: 'diana';
+        font-weight: bolder;
+        padding-top: 20px;
     }
     .logo-image {
         width: 70px;
         height: 70px;
-        padding: 5px;
+        padding: 10px;
         transition: transform 0.3s ease;
     }
 }
