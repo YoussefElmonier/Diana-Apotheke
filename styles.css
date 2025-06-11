@@ -143,11 +143,35 @@ main {
   font-family: 'swiz';
   font-weight: bolder;
   transform-style: preserve-3d;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .hero .char {
   display: inline-block;
   backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+    transform: none;
+    opacity: 1;
+  }
+
+  .hero .char {
+    transform: none;
+    transition: transform 0.3s ease;
+  }
+
+  .hero {
+    padding: 2rem 1rem;
+    perspective: none;
+  }
 }
 .hero p {
   color: var(--text-dark);
@@ -376,12 +400,15 @@ footer p {
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 1rem;
   }
 
   .roller {
-    height: 2.5rem;
+    font-size: 1.5rem;
+    height: 2rem;
     line-height: 2.5rem;
+    width: 120%;
+    padding-right: 110px;
   }
 
   .roller #rolltext {

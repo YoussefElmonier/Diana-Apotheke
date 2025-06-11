@@ -56,28 +56,6 @@
         });
     });
 </script>
-  
-    const hero = document.querySelector('.hero');
-    const headings = hero.querySelectorAll('h1, p');
-  
-    headings.forEach(el => {
-      const split = new SplitText(el, { type: "chars" });
-      gsap.set(split.chars, { opacity: 0, y: 40 });
-  
-      gsap.to(split.chars, {
-        scrollTrigger: {
-          trigger: el,
-          start: "top 90%",
-          toggleActions: "play none none none",
-          once: true
-        },
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power3.out",
-        stagger: 0.05
-      });
-    });
   </script>
   
     <header>
@@ -97,8 +75,8 @@
                 <span id="rolltext">Diana Apotheke<br/>
                 Ihrer Apotheke<br/>
                 zuverlässig<br/>
-                in Berlin <br/>
-                und Oranienburg<br/>
+                in Berlin und<br/>
+                Oranienburg<br/>
                 </span>
             </div>
             </h1>
