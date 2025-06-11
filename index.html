@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diana Apotheke - Ihre Apotheke in Berlin und Oranienburg</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="Swiz.ttf" as="font" type="font/woff2" crossorigin>
 </head>
 
 <body>
@@ -18,6 +19,43 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
     gsap.registerPlugin(ScrollTrigger, SplitText);
+    
+    window.addEventListener('load', () => {
+        const hero = document.querySelector('.hero');
+        const headings = hero.querySelectorAll('h1');
+        
+        headings.forEach(el => {
+            // Split text into words instead of chars for better control
+            const split = new SplitText(el, { 
+                type: "words,chars",
+                charsClass: "char",
+                wordsClass: "word"
+            });
+            
+            // Reset initial state
+            gsap.set(split.chars, { 
+                opacity: 0,
+                y: 20,
+                rotateX: -90
+            });
+            
+            // Animate with better timing and easing
+            gsap.to(split.chars, {
+                duration: 0.8,
+                opacity: 1,
+                y: 0,
+                rotateX: 0,
+                stagger: 0.02,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 80%",
+                    once: true
+                }
+            });
+        });
+    });
+</script>
   
     const hero = document.querySelector('.hero');
     const headings = hero.querySelectorAll('h1, p');
@@ -53,18 +91,18 @@
             
         </div>
     </header>
-    
     <main>
         <section class="hero">
-            <h1>Willkommen Bei<div class="roller">
+            <h1>Willkommen bei <div class="roller">
                 <span id="rolltext">Diana Apotheke<br/>
-                Ihre<br/>
-                uverlässig<br/>
-                in Berlin und Oranienburg<br/>
-                </div>
-                </h1>
+                Ihrer Apotheke<br/>
+                zuverlässig<br/>
+                in Berlin <br/>
+                und Oranienburg<br/>
+                </span>
             </div>
-          </section>
+            </h1>
+        </section>
 
         <section class="intro">
             <h2>Über uns</h2>
@@ -153,5 +191,12 @@
         <p>© 2025 Diana Apotheken. Alle Rechte Vorbehalten.</p>
     </footer>
 </body>
-
+<script>
+    window.addEventListener('load', () => {
+      // Trigger reflow
+      document.body.style.display = 'none';
+      document.body.offsetHeight; // force reflow
+      document.body.style.display = '';
+    });
+  </script>
 </html>
