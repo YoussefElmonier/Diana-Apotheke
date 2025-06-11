@@ -400,15 +400,16 @@ footer p {
   }
 
   h1 {
-    font-size: 1rem;
+    font-size: 2.5rem;
+    font-family: 'swiz';
+    font-weight: bolder;
   }
 
   .roller {
-    font-size: 1.5rem;
-    height: 2rem;
+    height: 2.5rem;
     line-height: 2.5rem;
-    width: 120%;
-    padding-right: 110px;
+    font-family: 'swiz';
+    font-weight: bolder;
   }
 
   .roller #rolltext {
