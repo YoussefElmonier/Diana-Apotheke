@@ -1,176 +1,954 @@
-
 <!DOCTYPE html>
 <html lang="de">
 
 <head>
-    <link rel="icon" type="image/png" href="logoMain.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diana Apotheke - Ihre Apotheke in Berlin und Oranienburg</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preload" href="Swiz.ttf" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" type="image/png" href="logoMain.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diana Apotheke – Ihre Apotheke in Berlin &amp; Oranienburg</title>
+  <meta name="description" content="Diana Apotheke – Kompetente pharmazeutische Beratung an zwei Standorten in Berlin Schloßstraße und Oranienburg. Persönlich, kompetent und zuverlässig.">
+
+  <!-- DNS prefetch for third-party origins -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+
+  <!-- Fonts: display=swap for fast text render, avoid invisible text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Icons: load async so it never blocks render -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+  <!-- Tailwind (CDN with custom config) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            emerald: {
+              950: '#0a1a0f',
+              900: '#1b2013',
+              800: '#2e3b1f',
+              700: '#4c5734',
+              600: '#7d8e54',
+              500: '#9aaf69',
+              400: '#b5c98a',
+              300: '#cdd5b4',
+              200: '#d3dabc',
+              100: '#e8edda',
+            }
+          },
+          fontFamily: {
+            display: ['Outfit', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            diana: ['diana', 'serif'],
+            swiz: ['swiz', 'sans-serif'],
+          },
+          backdropBlur: {
+            xs: '2px',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom fonts (preloaded for zero FOUT on logo text) -->
+  <link rel="preload" href="Swiz.ttf" as="font" type="font/truetype" crossorigin>
+  <link rel="preload" href="Kugile_Demo.ttf" as="font" type="font/truetype" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Preload first hero video for instant above-fold playback -->
+  <link rel="preload" href="videos/derv1.mp4" as="video" type="video/mp4">
+
+  <style>
+    /* ── Glass utility ── */
+    .glass {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .glass-dark {
+      background: rgba(10, 26, 15, 0.55);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+    .glass-card {
+      background: rgba(205, 213, 180, 0.08);
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      border: 1px solid rgba(205, 213, 180, 0.20);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    /* ── Video fill ── */
+    .video-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 0;
+      will-change: opacity;
+      contain: strict;
+    }
+
+    /* ── Top Scroll Progress Bar ── */
+    #scroll-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, #7d8e54, #b5c98a, #e8edda);
+      width: 0%;
+      z-index: 100;
+      transition: width 0.1s ease-out;
+      box-shadow: 0 0 10px rgba(181, 201, 138, 0.8);
+    }
+
+    /* ── Floating nav ── */
+    #main-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(205, 213, 180, 0.10);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border-bottom: 1px solid rgba(205, 213, 180, 0.20);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.07);
+      transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    #main-nav.scrolled {
+      background: rgba(205, 213, 180, 0.13);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-bottom: 1px solid rgba(205, 213, 180, 0.28);
+      box-shadow: 0 8px 36px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.10);
+    }
+
+
+
+    /* ── Modern Pill buttons with Shimmer Animation ── */
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 2.4rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #4c5734 0%, #7d8e54 100%);
+      color: #f4f7ee;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(181, 201, 138, 0.45);
+      box-shadow: 0 4px 20px rgba(76,87,52,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: rotate(25deg);
+      transition: all 0.6s ease;
+    }
+    .btn-primary:hover::after {
+      left: 130%;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 32px rgba(125, 142, 84, 0.5), 0 0 15px rgba(181, 201, 138, 0.4);
+      border-color: rgba(232, 237, 218, 0.6);
+    }
+    .btn-glass {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 2.4rem;
+      border-radius: 9999px;
+      background: rgba(205, 213, 180, 0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #e8edda;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(205, 213, 180, 0.30);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.12);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .btn-glass:hover {
+      transform: translateY(-2px) scale(1.03);
+      background: rgba(205, 213, 180, 0.22);
+      border-color: rgba(232, 237, 218, 0.5);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.35), 0 0 20px rgba(154,175,105,0.25);
+    }
+
+    /* ── Micro-badge & Floating Animation ── */
+    .badge-container {
+      animation: floatBadges 5s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    @keyframes floatBadges {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .badge:hover {
+      transform: scale(1.05);
+    }
+    .badge-open {
+      background: rgba(46, 59, 31, 0.65);
+      border: 1px solid rgba(181, 201, 138, 0.5);
+      color: #cdd5b4;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .badge-epres {
+      background: rgba(10, 26, 15, 0.7);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #e8edda;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* ── Scroll fade-in ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Location video overlay ── */
+    .location-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .location-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .location-video-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+        rgba(10,26,15,0.92) 0%,
+        rgba(27,32,19,0.82) 40%,
+        rgba(10,26,15,0.95) 100%);
+    }
+    .location-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Contact card glow ── */
+    .contact-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(154,175,105,0.25);
+    }
+
+    /* ── Contact links ── */
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 0.6rem;
+      color: #cdd5b4;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .contact-link:hover {
+      background: rgba(205,213,180,0.10);
+      color: #e8edda;
+    }
+    .contact-link i {
+      color: #9aaf69;
+      font-size: 1rem;
+      width: 1.1rem;
+      text-align: center;
+    }
+
+    /* ── Divider line ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #4c5734, #9aaf69);
+      border-radius: 99px;
+      margin: 0.75rem auto;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #0a1a0f;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ── Smooth scroll ── */
+    html { scroll-behavior: smooth; }
+
+    /* ════════════════════════════════
+       MOBILE OPTIMISATIONS  ≤ 640px
+    ════════════════════════════════ */
+    @media (max-width: 640px) {
+
+      /* Nav */
+      #main-nav .max-w-7xl { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+      #main-nav img.object-contain { width: 2.75rem; height: 2.75rem; }
+      #main-nav .font-diana { font-size: 1rem; }
+
+      /* Mobile dropdown */
+      #mobile-menu { gap: 1.25rem; padding: 1rem 1.25rem 1.25rem; }
+      #mobile-menu a { font-size: 1rem; padding: 0.35rem 0; }
+
+      /* Hero section */
+      section.relative.min-h-screen { min-height: 100svh; padding-top: 5rem; }
+      .hero-heading { font-size: clamp(2.2rem, 9vw, 3.2rem) !important; }
+
+      /* Roller */
+      .roller-wrap { height: 1.2em; }
+      .roller-inner span { font-size: clamp(1.2rem, 6vw, 1.8rem); }
+
+      /* Floating badges — move below nav, stack compactly */
+      .absolute.top-28 { top: 5.5rem; right: 1rem; gap: 0.4rem; }
+      .badge { font-size: 0.7rem; padding: 0.28rem 0.65rem; }
+
+      /* Hero body copy */
+      .relative.z-10.text-center { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .relative.z-10.text-center p.font-sans { font-size: 0.88rem; margin-bottom: 1.75rem; }
+
+      /* CTA buttons */
+      .btn-primary, .btn-glass { padding: 0.7rem 2.2rem; font-size: 0.88rem; }
+
+      /* Scroll indicator */
+      .absolute.bottom-8 { bottom: 1.25rem; }
+
+      /* Über uns */
+      #ueber-uns { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      #ueber-uns .flex.flex-wrap { gap: 0.5rem; }
+      #ueber-uns .glass-card { font-size: 0.8rem; padding: 0.45rem 0.85rem; }
+
+      /* Standorte */
+      #standorte { padding-top: 3rem; padding-bottom: 3rem; padding-left: 1rem; padding-right: 1rem; }
+      #standorte .text-center.mb-14 { margin-bottom: 2rem; }
+
+      /* Location cards */
+      .glass-card.rounded-3xl { padding: 1.5rem 1.25rem; border-radius: 1.25rem; }
+      .glass-card.rounded-3xl .flex.items-start { gap: 0.75rem; margin-bottom: 1rem; }
+      .glass-card.rounded-3xl .space-y-1 { margin-bottom: 1.25rem; }
+
+      /* Contact links — larger tap targets */
+      .contact-link { font-size: 0.85rem; padding: 0.65rem 0.6rem; }
+      .contact-link i { font-size: 0.95rem; }
+
+      /* Footer */
+      footer { padding: 1.5rem 1.25rem; }
+      footer .flex-col { gap: 0.75rem; }
+    }
+
+    /* 641–768px: tablet tweaks */
+    @media (min-width: 641px) and (max-width: 768px) {
+      .hero-heading { font-size: clamp(2.8rem, 7vw, 4rem) !important; }
+      .glass-card.rounded-3xl { padding: 2rem 1.75rem; }
+    }
+  </style>
 </head>
 
-<body>
-<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/gsap@3/dist/SplitText.min.js"></script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    gsap.registerPlugin(ScrollTrigger, SplitText);
-    
-    window.addEventListener('load', () => {
-        const hero = document.querySelector('.hero');
-        const headings = hero.querySelectorAll('h1');
-        
-        headings.forEach(el => {
-            // Split text into words instead of chars for better control
-            const split = new SplitText(el, { 
-                type: "words,chars",
-                charsClass: "char",
-                wordsClass: "word"
-            });
-            
-            // Reset initial state
-            gsap.set(split.chars, { 
-                opacity: 0,
-                y: 20,
-                rotateX: -90
-            });
-            
-            // Animate with better timing and easing
-            gsap.to(split.chars, {
-                duration: 0.8,
-                opacity: 1,
-                y: 0,
-                rotateX: 0,
-                stagger: 0.02,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 80%",
-                    once: true
-                }
-            });
+<body class="bg-emerald-950 text-emerald-200 antialiased">
+
+  <!-- ═══════════════════════════════════════════
+       FLOATING NAVIGATION
+  ════════════════════════════════════════════ -->
+  <header id="main-nav" class="border-b border-white/5">
+    <div id="scroll-progress"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-5 py-2 sm:py-3 flex items-center justify-between">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 sm:gap-3 group">
+        <img src="logoMain.png" alt="Diana Apotheke Logo"
+             class="w-11 h-11 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105">
+        <span class="font-diana text-base sm:text-xl text-emerald-200 leading-none tracking-wide">DIANA APOTHEKEN</span>
+      </a>
+
+      <!-- Nav links (desktop) -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-emerald-300">
+        <a href="#ueber-uns" class="hover:text-emerald-100 transition-colors">Über uns</a>
+        <a href="#standorte"  class="hover:text-emerald-100 transition-colors">Standorte</a>
+        <a href="https://www.diana-apotheken.de" target="_blank"
+           class="btn-primary text-sm px-5 py-2">
+          Online-Apotheke <span>→</span>
+        </a>
+      </nav>
+
+      <!-- Mobile menu icon -->
+      <button id="mobile-menu-btn" aria-label="Menü öffnen"
+              class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl glass-card text-emerald-300 hover:text-emerald-100 transition-colors">
+        <i class="fas fa-bars text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu"
+         class="md:hidden hidden glass-dark border-t border-white/10 px-5 py-5 flex-col gap-3 font-medium text-emerald-200">
+      <a href="#ueber-uns" class="text-base hover:text-white transition-colors py-1" onclick="closeMobileMenu()">Über uns</a>
+      <a href="#standorte"  class="text-base hover:text-white transition-colors py-1" onclick="closeMobileMenu()">Standorte</a>
+      <a href="https://www.diana-apotheken.de" target="_blank"
+         class="btn-primary inline-flex items-center justify-center gap-2.5 w-fit !px-8 py-2.5 mt-2 text-sm whitespace-nowrap">Online-Apotheke <span>→</span></a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════
+         HERO SECTION – DNA video background
+    ════════════════════════════════════════════ -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+      <!-- Background videos: 3 videos crossfade automatically -->
+      <div id="hero-video-container" class="video-bg" style="z-index:0; contain:strict;">
+        <!-- First video: autoplay, no preload needed (already preloaded via <link rel=preload>) -->
+        <video class="hero-bg-video" id="hero-vid-0" autoplay loop muted playsinline preload="auto"
+               style="filter:blur(2px) saturate(0.85); position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:1; transition:opacity 1.2s ease; will-change:opacity;">
+          <source src="videos/derv1.mp4" type="video/mp4">
+        </video>
+        <!-- Inactive videos: preload=none to save bandwidth until needed -->
+        <video class="hero-bg-video" id="hero-vid-1" loop muted playsinline preload="none"
+               style="filter:blur(2px) saturate(0.85); position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1.2s ease; will-change:opacity;">
+          <source src="videos/derv2.mp4" type="video/mp4">
+        </video>
+        <video class="hero-bg-video" id="hero-vid-2" loop muted playsinline preload="none"
+               style="filter:blur(2px) saturate(0.85); position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1.2s ease; will-change:opacity;">
+          <source src="videos/derv3.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Dark emerald overlay -->
+      <div class="absolute inset-0 z-[1]"
+           style="background: linear-gradient(135deg, rgba(10,26,15,0.75) 0%, rgba(27,32,19,0.60) 50%, rgba(10,26,15,0.82) 100%);"></div>
+
+      <!-- Floating micro-badges -->
+      <div class="absolute top-28 right-6 md:right-16 z-10 flex flex-col gap-2.5 reveal badge-container">
+        <span class="badge badge-open">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          Jetzt geöffnet
+        </span>
+        <span class="badge badge-epres">
+          <i class="fas fa-file-prescription text-emerald-400 text-xs"></i>
+          e-Rezept möglich
+        </span>
+      </div>
+
+      <!-- Hero content -->
+      <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+
+        <!-- Eyebrow -->
+        <p class="font-display text-emerald-400 text-xs md:text-sm font-semibold tracking-[0.25em] uppercase mb-5 reveal"
+           style="transition-delay:0.1s">
+          Seit Jahren für Ihre Gesundheit
+        </p>
+
+        <!-- Main headline -->
+        <h1 class="hero-heading font-display font-bold text-white leading-[1.08] mb-4 tracking-tight"
+            style="font-size:clamp(3.2rem,7vw,5.5rem);">
+          Herzlich&nbsp;willkommen
+        </h1>
+
+        <!-- Dynamic Sub-headline (Strict 2-line layout to prevent text jumping) -->
+        <div class="font-display font-normal text-emerald-200/90 mb-8 reveal flex flex-col items-center justify-center gap-2 text-center"
+             style="font-size:clamp(1.3rem, 3.2vw, 2.2rem); transition-delay:0.3s;">
+          <span class="block">Ihre Gesundheit in besten Händen</span>
+          <span id="hero-dynamic-text" class="text-emerald-300 font-semibold border-b-2 border-emerald-400/40 pb-1 transition-all duration-500 inline-block">
+            persönlich &amp; kompetent
+          </span>
+        </div>
+
+        <!-- Body copy -->
+        <p class="font-sans text-emerald-200/80 text-base md:text-lg max-w-xl mx-auto mb-10 reveal"
+           style="transition-delay:0.4s; font-weight:300; line-height:1.75">
+          Zwei Standorte. Ein Team. Unser erfahrenes Apothekenteam begleitet Sie in Berlin und Oranienburg.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap items-center justify-center gap-4 reveal" style="transition-delay:0.5s">
+          <a href="#standorte" class="btn-primary">
+            Standorte &amp; Kontakt <span>→</span>
+          </a>
+          <a href="#ueber-uns" class="btn-glass">
+            Über uns
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1 opacity-60">
+        <span class="font-sans text-xs text-emerald-400 tracking-widest uppercase">Scroll</span>
+        <span class="w-px h-10 bg-gradient-to-b from-emerald-500 to-transparent"></span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         ÜBER UNS
+    ════════════════════════════════════════════ -->
+    <section id="ueber-uns" class="relative py-24 px-6 bg-emerald-950">
+
+      <!-- Subtle grid texture -->
+      <div class="absolute inset-0 opacity-[0.03]"
+           style="background-image: radial-gradient(circle, #9aaf69 1px, transparent 1px); background-size: 36px 36px;"></div>
+
+      <div class="relative max-w-3xl mx-auto text-center">
+        <p class="font-display text-emerald-500 text-xs font-semibold tracking-[0.25em] uppercase mb-3 reveal">
+          Wer wir sind
+        </p>
+        <h2 class="font-display text-emerald-100 mb-4 reveal font-bold"
+            style="font-size:clamp(2.2rem,4vw,3.2rem); transition-delay:0.1s">
+          Über uns
+        </h2>
+        <div class="divider reveal" style="transition-delay:0.15s"></div>
+        <p class="font-sans text-emerald-300/80 mt-6 text-base md:text-lg leading-relaxed reveal"
+           style="font-weight:300; transition-delay:0.2s">
+          Seit Jahren setzen wir uns für Ihre Gesundheit ein. Mit zwei Standorten in
+          <strong class="text-emerald-300 font-medium">Berlin</strong> und
+          <strong class="text-emerald-300 font-medium">Oranienburg</strong> bieten wir Ihnen
+          kompetente pharmazeutische Beratung und einen umfassenden Service. Unser erfahrenes Team
+          steht Ihnen mit Rat und Tat zur Seite.
+        </p>
+
+        <!-- Feature chips with hover lift & glow -->
+        <div class="flex flex-wrap justify-center gap-3.5 mt-10 reveal" style="transition-delay:0.3s">
+          <span class="glass-card px-4 py-2.5 rounded-full font-sans text-sm text-emerald-300 transition-all duration-300 hover:scale-105 hover:border-emerald-400/40 hover:text-emerald-100 hover:shadow-lg hover:shadow-emerald-900/40 cursor-default">
+            <i class="fas fa-user-md mr-2 text-emerald-400"></i>Fachkundige Beratung
+          </span>
+          <span class="glass-card px-4 py-2.5 rounded-full font-sans text-sm text-emerald-300 transition-all duration-300 hover:scale-105 hover:border-emerald-400/40 hover:text-emerald-100 hover:shadow-lg hover:shadow-emerald-900/40 cursor-default">
+            <i class="fas fa-file-prescription mr-2 text-emerald-400"></i>e-Rezept
+          </span>
+          <span class="glass-card px-4 py-2.5 rounded-full font-sans text-sm text-emerald-300 transition-all duration-300 hover:scale-105 hover:border-emerald-400/40 hover:text-emerald-100 hover:shadow-lg hover:shadow-emerald-900/40 cursor-default">
+            <i class="fas fa-heart mr-2 text-emerald-400"></i>Persönliche Betreuung
+          </span>
+          <span class="glass-card px-4 py-2.5 rounded-full font-sans text-sm text-emerald-300 transition-all duration-300 hover:scale-105 hover:border-emerald-400/40 hover:text-emerald-100 hover:shadow-lg hover:shadow-emerald-900/40 cursor-default">
+            <i class="fas fa-map-marker-alt mr-2 text-emerald-400"></i>Zwei Standorte
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         STANDORTE – Storefront video background
+    ════════════════════════════════════════════ -->
+    <section id="standorte" class="location-section py-24 px-6">
+
+      <!-- Storefront video -->
+      <div class="location-video-wrap">
+        <video class="video-bg" autoplay loop muted playsinline style="filter: blur(3px) saturate(0.7);">
+          <source src="videos/desktop maybe.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="location-content max-w-6xl mx-auto">
+
+        <!-- Section header -->
+        <div class="text-center mb-14">
+          <p class="font-display text-emerald-500 text-xs font-semibold tracking-[0.25em] uppercase mb-3 reveal">
+            Besuchen Sie uns
+          </p>
+          <h2 class="font-display text-emerald-100 reveal font-bold"
+              style="font-size:clamp(2.2rem,4vw,3.2rem); transition-delay:0.1s">
+            Unsere Standorte
+          </h2>
+          <div class="divider reveal" style="transition-delay:0.15s"></div>
+        </div>
+
+        <!-- Cards grid -->
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+          <!-- Berlin -->
+          <article class="glass-card rounded-3xl p-8 contact-card reveal" style="transition-delay:0.1s">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-11 h-11 rounded-xl bg-emerald-700/40 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-1 shadow-inner">
+                <i class="fas fa-store text-emerald-400"></i>
+              </div>
+              <div>
+                <h3 class="font-display text-emerald-100 text-2xl font-bold">Standort Berlin</h3>
+                <p class="font-sans text-emerald-400 text-sm mt-0.5 font-medium">Schloßstraße 116 · 12163 Berlin</p>
+              </div>
+            </div>
+
+            <div class="space-y-1 mb-7">
+              <a href="tel:+493079788430" class="contact-link">
+                <i class="fas fa-phone"></i>
+                Tel.: +49 30 797 88 430
+              </a>
+              <a href="fax:+4930797884363" class="contact-link">
+                <i class="fas fa-fax"></i>
+                Fax: 030/79 78 43 63
+              </a>
+              <a href="mailto:info.schlossstrasse@diana-apotheken.de" class="contact-link">
+                <i class="fas fa-envelope"></i>
+                info.schlossstrasse@diana-apotheken.de
+              </a>
+              <a href="https://maps.app.goo.gl/x6ffdnMNCHSxvqCN8" target="_blank" class="contact-link">
+                <i class="fas fa-map-marker-alt"></i>
+                Auf Google Maps öffnen
+              </a>
+              <a href="https://www.instagram.com/dianaapotheke/" target="_blank" class="contact-link">
+                <i class="fab fa-instagram"></i>
+                @DianaApotheken
+              </a>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="https://www.diana-apotheken.de" target="_blank" class="btn-primary text-sm">
+                Website <span>→</span>
+              </a>
+              <a href="https://maps.app.goo.gl/x6ffdnMNCHSxvqCN8" target="_blank" class="btn-glass text-sm">
+                <i class="fas fa-map-marker-alt text-xs"></i> Maps
+              </a>
+            </div>
+          </article>
+
+          <!-- Oranienburg -->
+          <article class="glass-card rounded-3xl p-8 contact-card reveal" style="transition-delay:0.2s">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-11 h-11 rounded-xl bg-emerald-700/40 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 mt-1 shadow-inner">
+                <i class="fas fa-store text-emerald-400"></i>
+              </div>
+              <div>
+                <h3 class="font-display text-emerald-100 text-2xl font-bold">Standort Oranienburg</h3>
+                <p class="font-sans text-emerald-400 text-sm mt-0.5 font-medium">Friedensstr. 8 · 16515 Oranienburg</p>
+              </div>
+            </div>
+
+            <div class="space-y-1 mb-7">
+              <a href="tel:+4933015748750" class="contact-link">
+                <i class="fas fa-phone"></i>
+                Tel.: +49 3301 574875
+              </a>
+              <a href="fax:+493301574872" class="contact-link">
+                <i class="fas fa-fax"></i>
+                Fax: 03301/574 872
+              </a>
+              <a href="mailto:info.oranienpark@diana-apotheken.de" class="contact-link">
+                <i class="fas fa-envelope"></i>
+                info.oranienpark@diana-apotheken.de
+              </a>
+              <a href="https://maps.app.goo.gl/5pHzYAWQdPMfygga8" target="_blank" class="contact-link">
+                <i class="fas fa-map-marker-alt"></i>
+                Auf Google Maps öffnen
+              </a>
+              <a href="https://www.instagram.com/dianaapotheke/" target="_blank" class="contact-link">
+                <i class="fab fa-instagram"></i>
+                @DianaApotheken
+              </a>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              <a href="https://www.diana-apotheken.com" target="_blank" class="btn-primary text-sm">
+                Website <span>→</span>
+              </a>
+              <a href="https://maps.app.goo.gl/5pHzYAWQdPMfygga8" target="_blank" class="btn-glass text-sm">
+                <i class="fas fa-map-marker-alt text-xs"></i> Maps
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="py-8 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img src="logoMain.png" alt="Diana Apotheke Logo" class="w-9 h-9 object-contain opacity-70">
+        <span class="font-diana text-sm text-emerald-500 tracking-wide">DIANA APOTHEKEN</span>
+      </div>
+      <p class="font-sans text-emerald-600 text-xs text-center">
+        © 2026 Diana Apotheken. Alle Rechte Vorbehalten.
+      </p>
+      <div class="flex items-center gap-5 text-emerald-600 text-sm">
+        <a href="https://www.instagram.com/dianaapotheke/" target="_blank"
+           class="hover:text-emerald-400 transition-colors">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.diana-apotheken.de" target="_blank"
+           class="hover:text-emerald-400 transition-colors font-sans text-xs">
+          diana-apotheken.de
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════════ -->
+  <!-- GSAP loaded async – doesn't block rendering -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js" defer></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js" defer></script>
+
+  <script>
+    /* ── Scroll Progress Line & Nav effect (rAF-throttled, passive) ── */
+    const nav = document.getElementById('main-nav');
+    const scrollProgress = document.getElementById('scroll-progress');
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (scrollProgress && docHeight > 0) {
+            scrollProgress.style.width = ((scrollTop / docHeight) * 100) + '%';
+          }
+          nav.classList.toggle('scrolled', scrollTop > 40);
+          ticking = false;
         });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    /* ── Mobile menu ── */
+    const mobileBtn  = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      mobileMenu.classList.toggle('flex');
     });
-</script>
-  </script>
-  
-    <header>
-        <div class="header-content">
-            <div class="logo-container">
-                <img src="logoMain.png" alt="Diana Apotheke Logo" class="logo-image">
-                <div class="logo-text">DIANA APOTHEKEN</div>
-            </div>
-        </div>
-        <div class="gradient">
-            
-        </div>
-    </header>
-    <main>
-        <section class="hero">
-            <h1>Herzlich willkommen<div class="roller">
-                <span id="rolltext"> bei Ihrer<br/>
-            Diana Apotheke<br/>wir sind für<br/>Ihre Gesundheit<br/>da, persönlich<br/>kompetent und<br/>zuverlässig<br/></span>
-            </div>
-            </h1>
-        </section>
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+    }
 
-        <section class="intro">
-            <h2>Über uns</h2>
-            <p>Seit Jahren setzen wir uns für Ihre Gesundheit ein. Mit zwei Standorten in Berlin und Oranienburg bieten
-                wir Ihnen kompetente pharmazeutische Beratung und einen umfassenden Service. Unser erfahrenes Team steht
-                Ihnen mit Rat und Tat zur Seite.</p>
-        </section>
+    /* ── Intersection Observer – reveal on scroll ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer  = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
 
-        <section class="locations">
-            <div class="location-card">
-                <h3>Standort Berlin</h3>
-                <p>Schlossstr.116<br>12163 Berlin</p>
-                <div class="contact-info">
-                    <a href="tel:+49 30 797 88 430" class="contact-item" style="animation-delay: 0.1s;">
-                        <i class="fas fa-phone contact-icon"></i>
-                        Tel.: +49 30 797 88 430
-                    </a>
-                    <a href="fax:030797843630" class="contact-item" style="animation-delay: 0.2s;">
-                        <i class="fas fa-fax contact-icon"></i>
-                        Fax: +49 30 797 88 430
-                    </a>
-                    <a href="mailto:info.schlossstrasse@diana-apotheken.de " class="contact-item" style="animation-delay: 0.3s;">
-                        <i class="fas fa-envelope contact-icon"></i>
-                        Schloßstraße
-                    </a>
-                    <a href="https://maps.app.goo.gl/x6ffdnMNCHSxvqCN8" target="_blank" class="contact-item"
-                        style="animation-delay: 0.4s;">
-                        <i class="fas fa-map-marker-alt contact-icon"></i>
-                        Standort auf Maps anzeigen
-                    </a>
-                    <a href="https://www.instagram.com/dianaapotheke/" target="_blank" class="contact-item"
-                        style="animation-delay: 0.4s;">
-                        <i class="fab fa-instagram contact-icon "style="text-shadow: 0.5px 0.5px 0 #212121;"></i>
-                        @DianaApotheken
-                    </a>
-                </div>
-                <div class="container">
-                    <button class="bg-[#1b2013] text-[#d3dabc] border border-[#7d8e54] border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"onclick="window.open('https://www.diana-apotheken.de', '_blank')">
-                        <span class="bg-[#4c5734] shadow-[#4c5734] absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-                        Website
-                      </button>
-                </div>
-                        
-            </div>
-
-            <div class="location-card">
-                <h3>Standort Oranienburg</h3>
-                <p>Friedensstr.8<br>16515 Oranienburg</p>
-                <div class="contact-info">
-                    <a href="tel:+49 3301 574875" class="contact-item" style="animation-delay: 0.1s;">
-                        <i class="fas fa-phone contact-icon"></i>
-                        Tel.: +49 3301 574875
-                    </a>
-                    <a href="fax:03301574872" class="contact-item" style="animation-delay: 0.2s;">
-                        <i class="fas fa-fax contact-icon"></i>
-                        Fax: 03301 574 872
-                    </a>
-                    <a href="mailto:info.oranienpark@diana-apotheken.de" class="contact-item" style="animation-delay: 0.3s;">
-                        <i class="fas fa-envelope contact-icon"></i>
-                    Oranienburg
-                    </a>
-                    <a href="https://maps.app.goo.gl/5pHzYAWQdPMfygga8" target="_blank" class="contact-item"
-                        style="animation-delay: 0.4s;">
-                        <i class="fas fa-map-marker-alt contact-icon"></i>
-                        Standort auf Maps anzeigen
-                    </a>
-                    <a href="https://www.instagram.com/dianaapotheke/" target="_blank" class="contact-item"
-                    style="animation-delay: 0.4s;">
-                    <i class="fab fa-instagram contact-icon "style="text-shadow: 0.5px 0.5px 0 #212121;"></i>
-                    @DianaApotheken
-                </a>
-                </div>
-                <div class="container">
-                    <button class="bg-[#1b2013] text-[#d3dabc] border border-[#7d8e54] border-b-4 font-medium overflow-hidden relative px-4 py-2 rounded-md hover:brightness-150 hover:border-t-4 hover:border-b active:opacity-75 outline-none duration-300 group"onclick="window.open('https://www.diana-apotheken.com', '_blank')">
-                        <span class="bg-[#4c5734] shadow-[#4c5734] absolute -top-[150%] left-0 inline-flex w-80 h-[5px] rounded-md opacity-50 group-hover:top-[150%] duration-500 shadow-[0_0_10px_10px_rgba(0,0,0,0.3)]"></span>
-                        Website
-                      </button>
-                </div>              
-            </div>
-        </section>
-    </main>
-    
-    <footer class="footer">
-        <div class="gradient2">
-        </div>
-        <p>© 2026 Diana Apotheken. Alle Rechte Vorbehalten.</p>
-    </footer>
-</body>
-<script>
+    /* ── Trigger initial reveals (hero) ── */
     window.addEventListener('load', () => {
-      // Trigger reflow
-      document.body.style.display = 'none';
-      document.body.offsetHeight; // force reflow
-      document.body.style.display = '';
+      document.querySelectorAll('.reveal').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('visible');
+      });
+
+      /* ── Modern Dynamic Text Morphing Loop ── */
+      const phrases = [
+        "persönlich &amp; kompetent",
+        "an zwei Standorten",
+        "mit digitalem e-Rezept",
+        "zuverlässig &amp; nah",
+        "für Ihre Gesundheit"
+      ];
+      let phraseIndex = 0;
+      const dynamicEl = document.getElementById('hero-dynamic-text');
+
+      if (dynamicEl) {
+        setInterval(() => {
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          dynamicEl.style.opacity = '0';
+          dynamicEl.style.transform = 'translateY(8px)';
+          
+          setTimeout(() => {
+            dynamicEl.innerHTML = phrases[phraseIndex];
+            dynamicEl.style.opacity = '1';
+            dynamicEl.style.transform = 'translateY(0px)';
+          }, 350);
+        }, 3200);
+      }
     });
+
+    /* ── Interactive 3D Tilt Effect on Contact Cards ── */
+    document.querySelectorAll('.contact-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    });
+
+    /* ── Hero Video Crossfade Cycle – desktop & mobile sets ── */
+    (function () {
+      const videos = [
+        document.getElementById('hero-vid-0'),
+        document.getElementById('hero-vid-1'),
+        document.getElementById('hero-vid-2')
+      ];
+      if (!videos[0]) return;
+
+      const desktopSrcs = [
+        'videos/derv1.mp4',
+        'videos/derv2.mp4',
+        'videos/derv3.mp4'
+      ];
+      const mobileSrcs = [
+        'videos/mobile derv1.mp4',
+        'videos/mobile derv2.mp4',
+        'videos/mobile derv3.mp4'
+      ];
+
+      let current = 0;
+      let cycleTimer = null;
+      let preloadTimer = null;
+
+      function isMobile() {
+        return window.matchMedia('(max-width: 640px)').matches;
+      }
+
+      function loadSrcSet(srcs) {
+        videos.forEach((v, i) => {
+          const sourceEl = v.querySelector('source');
+          if (sourceEl && sourceEl.src !== new URL(srcs[i], location.href).href) {
+            v.style.opacity = '0';
+            v.pause();
+            sourceEl.src = srcs[i];
+            v.load();
+          }
+        });
+      }
+
+      // Pre-load a specific video index so it's ready when needed
+      function preloadVideo(idx) {
+        const v = videos[idx];
+        if (v && v.preload === 'none') {
+          v.preload = 'auto';
+          v.load();
+        }
+      }
+
+      function startCycle() {
+        current = 0;
+        videos.forEach((v, i) => {
+          v.style.opacity = i === 0 ? '1' : '0';
+        });
+        videos[0].play().catch(() => {});
+
+        if (cycleTimer) clearInterval(cycleTimer);
+        if (preloadTimer) clearTimeout(preloadTimer);
+
+        // Pre-load vid[1] after 5s (3s before the 8s switch)
+        preloadTimer = setTimeout(() => preloadVideo(1), 5000);
+
+        cycleTimer = setInterval(() => {
+          const prev = current;
+          const next = (current + 1) % videos.length;
+          const afterNext = (next + 1) % videos.length;
+
+          videos[prev].style.opacity = '0';
+          videos[next].style.opacity = '1';
+          videos[next].play().catch(() => {});
+          current = next;
+
+          // Pre-load the one after next while current is visible
+          setTimeout(() => preloadVideo(afterNext), 3000);
+
+          // Pause & reset previous after fade completes
+          setTimeout(() => {
+            videos[prev].pause();
+            videos[prev].currentTime = 0;
+          }, 1400);
+        }, 8000);
+      }
+
+      function init() {
+        const srcs = isMobile() ? mobileSrcs : desktopSrcs;
+        loadSrcSet(srcs);
+        setTimeout(startCycle, 200);
+      }
+
+      init();
+
+      // Debounced resize — only re-init when crossing 640px breakpoint
+      let wasMobile = isMobile();
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const nowMobile = isMobile();
+          if (nowMobile !== wasMobile) {
+            wasMobile = nowMobile;
+            init();
+          }
+        }, 200);
+      }, { passive: true });
+    })();
+
+    /* ── Close mobile menu on outside tap ── */
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById('mobile-menu');
+      const btn  = document.getElementById('mobile-menu-btn');
+      if (!menu.classList.contains('hidden') &&
+          !menu.contains(e.target) && !btn.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+
+
   </script>
+
+</body>
 </html>
