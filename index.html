@@ -2,7 +2,7 @@
 <html lang="de">
 
 <head>
-  <link rel="icon" type="image/png" href="logoMain.png">
+  <link rel="icon" type="image/webp" href="logoMain.webp">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Diana Apotheke – Ihre Apotheke in Berlin &amp; Oranienburg</title>
@@ -64,8 +64,10 @@
   <link rel="preload" href="Kugile_Demo.ttf" as="font" type="font/truetype" crossorigin>
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Preload first hero video for instant above-fold playback -->
-  <link rel="preload" href="videos/derv1.mp4" as="video" type="video/mp4">
+  <!-- Preload critical hero assets for instant 0ms first render -->
+  <link rel="preload" href="logoMain.webp" as="image">
+  <link rel="preload" href="videos/poster_derv1.webp" as="image" media="(min-width: 641px)">
+  <link rel="preload" href="videos/poster_mobile_derv1.webp" as="image" media="(max-width: 640px)">
 
   <style>
     /* ── Glass utility ── */
@@ -411,8 +413,9 @@
 
       <!-- Logo -->
       <a href="#" class="flex items-center gap-2 sm:gap-3 group">
-        <img src="logoMain.png" alt="Diana Apotheke Logo"
-             class="w-11 h-11 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105">
+        <img src="logoMain.webp" alt="Diana Apotheke Logo"
+             class="w-11 h-11 sm:w-14 sm:h-14 object-contain transition-transform duration-300 group-hover:scale-105"
+             width="56" height="56" loading="eager">
         <span class="font-diana text-base sm:text-xl text-emerald-200 leading-none tracking-wide">DIANA APOTHEKEN</span>
       </a>
 
@@ -450,20 +453,24 @@
     ════════════════════════════════════════════ -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-      <!-- Background videos: 3 videos crossfade automatically -->
+      <!-- Background videos: 3 videos crossfade automatically (Dual WebM + MP4 + WebP poster) -->
       <div id="hero-video-container" class="video-bg" style="z-index:0; contain:strict;">
-        <!-- First video: autoplay, no preload needed (already preloaded via <link rel=preload>) -->
-        <video class="hero-bg-video" id="hero-vid-0" autoplay loop muted playsinline preload="auto"
+        <!-- Vid 0: Primary video -->
+        <video class="hero-bg-video" id="hero-vid-0" autoplay loop muted playsinline preload="auto" poster="videos/poster_derv1.webp"
                style="filter:blur(2px) saturate(0.85); position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:1; transition:opacity 1.2s ease; will-change:opacity;">
+          <source src="videos/derv1.webm" type="video/webm">
           <source src="videos/derv1.mp4" type="video/mp4">
         </video>
-        <!-- Inactive videos: preload=none to save bandwidth until needed -->
-        <video class="hero-bg-video" id="hero-vid-1" loop muted playsinline preload="none"
+        <!-- Vid 1: Inactive until crossfade -->
+        <video class="hero-bg-video" id="hero-vid-1" loop muted playsinline preload="none" poster="videos/poster_derv2.webp"
                style="filter:blur(2px) saturate(0.85); position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1.2s ease; will-change:opacity;">
+          <source src="videos/derv2.webm" type="video/webm">
           <source src="videos/derv2.mp4" type="video/mp4">
         </video>
-        <video class="hero-bg-video" id="hero-vid-2" loop muted playsinline preload="none"
+        <!-- Vid 2: Inactive until crossfade -->
+        <video class="hero-bg-video" id="hero-vid-2" loop muted playsinline preload="none" poster="videos/poster_derv3.webp"
                style="filter:blur(2px) saturate(0.85); position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1.2s ease; will-change:opacity;">
+          <source src="videos/derv3.webm" type="video/webm">
           <source src="videos/derv3.mp4" type="video/mp4">
         </video>
       </div>
@@ -624,9 +631,14 @@
                 <i class="fas fa-phone"></i>
                 Tel.: +49 30 797 88 430
               </a>
-              <a href="fax:+4930797884363" class="contact-link">
+              <a href="tel:+4930797884363" class="contact-link cursor-pointer group"
+                 onclick="event.preventDefault(); copyToClipboard('030797884363', 'Fax-Nummer Berlin (030/79 78 43 63) kopiert!');"
+                 title="Fax-Nummer kopieren">
                 <i class="fas fa-fax"></i>
-                Fax: 030/79 78 43 63
+                <span>Fax: 030/79 78 43 63</span>
+                <span class="text-[0.75rem] text-emerald-400/70 ml-auto flex items-center gap-1 group-hover:text-emerald-200 transition-colors">
+                  <i class="far fa-copy"></i> Kopieren
+                </span>
               </a>
               <a href="mailto:info.schlossstrasse@diana-apotheken.de" class="contact-link">
                 <i class="fas fa-envelope"></i>
@@ -669,9 +681,14 @@
                 <i class="fas fa-phone"></i>
                 Tel.: +49 3301 574875
               </a>
-              <a href="fax:+493301574872" class="contact-link">
+              <a href="tel:+493301574872" class="contact-link cursor-pointer group"
+                 onclick="event.preventDefault(); copyToClipboard('03301574872', 'Fax-Nummer Oranienburg (03301/574 872) kopiert!');"
+                 title="Fax-Nummer kopieren">
                 <i class="fas fa-fax"></i>
-                Fax: 03301/574 872
+                <span>Fax: 03301/574 872</span>
+                <span class="text-[0.75rem] text-emerald-400/70 ml-auto flex items-center gap-1 group-hover:text-emerald-200 transition-colors">
+                  <i class="far fa-copy"></i> Kopieren
+                </span>
               </a>
               <a href="mailto:info.oranienpark@diana-apotheken.de" class="contact-link">
                 <i class="fas fa-envelope"></i>
@@ -728,6 +745,13 @@
     </div>
   </footer>
 
+  <!-- Toast Notification Popup -->
+  <div id="toast-notification"
+       class="fixed bottom-6 right-6 z-50 transform translate-y-16 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 px-5 py-3.5 rounded-2xl glass-dark border border-emerald-500/40 text-emerald-100 shadow-2xl font-sans text-sm font-medium">
+    <i class="fas fa-check-circle text-emerald-400 text-lg"></i>
+    <span id="toast-message">In die Zwischenablage kopiert!</span>
+  </div>
+
   <!-- ═══════════════════════════════════════════
        SCRIPTS
   ════════════════════════════════════════════ -->
@@ -736,6 +760,50 @@
   <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js" defer></script>
 
   <script>
+    /* ── Copy to Clipboard Toast Handler ── */
+    function copyToClipboard(text, message) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(message || 'Fax-Nummer kopiert!');
+        }).catch(() => {
+          fallbackCopy(text, message);
+        });
+      } else {
+        fallbackCopy(text, message);
+      }
+    }
+
+    function fallbackCopy(text, message) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast(message || 'Fax-Nummer kopiert!');
+      } catch (e) {
+        showToast('Kopieren fehlgeschlagen');
+      }
+      document.body.removeChild(ta);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      if (!toast || !toastMsg) return;
+
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-y-16', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-16', 'opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+
     /* ── Scroll Progress Line & Nav effect (rAF-throttled, passive) ── */
     const nav = document.getElementById('main-nav');
     const scrollProgress = document.getElementById('scroll-progress');
@@ -831,7 +899,7 @@
       });
     });
 
-    /* ── Hero Video Crossfade Cycle – desktop & mobile sets ── */
+    /* ── Hero Video Crossfade Cycle – Network-Aware & Desktop/Mobile ── */
     (function () {
       const videos = [
         document.getElementById('hero-vid-0'),
@@ -840,16 +908,13 @@
       ];
       if (!videos[0]) return;
 
-      const desktopSrcs = [
-        'videos/derv1.mp4',
-        'videos/derv2.mp4',
-        'videos/derv3.mp4'
-      ];
-      const mobileSrcs = [
-        'videos/mobile derv1.mp4',
-        'videos/mobile derv2.mp4',
-        'videos/mobile derv3.mp4'
-      ];
+      const desktopWebm    = ['videos/derv1.webm', 'videos/derv2.webm', 'videos/derv3.webm'];
+      const desktopMp4     = ['videos/derv1.mp4',  'videos/derv2.mp4',  'videos/derv3.mp4'];
+      const desktopPosters = ['videos/poster_derv1.webp', 'videos/poster_derv2.webp', 'videos/poster_derv3.webp'];
+
+      const mobileWebm     = ['videos/mobile derv1.webm', 'videos/mobile derv2.webm', 'videos/mobile derv3.webm'];
+      const mobileMp4      = ['videos/mobile derv1.mp4',  'videos/mobile derv2.mp4',  'videos/mobile derv3.mp4'];
+      const mobilePosters  = ['videos/poster_mobile_derv1.webp', 'videos/poster_mobile_derv2.webp', 'videos/poster_mobile_derv3.webp'];
 
       let current = 0;
       let cycleTimer = null;
@@ -859,19 +924,31 @@
         return window.matchMedia('(max-width: 640px)').matches;
       }
 
-      function loadSrcSet(srcs) {
+      function isSlowNetwork() {
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (!conn) return false;
+        if (conn.saveData) return true;
+        if (['slow-2g', '2g', '3g'].includes(conn.effectiveType)) return true;
+        if (conn.downlink && conn.downlink < 1.2) return true;
+        return false;
+      }
+
+      function updateVideoSources(webmArr, mp4Arr, posterArr) {
         videos.forEach((v, i) => {
-          const sourceEl = v.querySelector('source');
-          if (sourceEl && sourceEl.src !== new URL(srcs[i], location.href).href) {
-            v.style.opacity = '0';
-            v.pause();
-            sourceEl.src = srcs[i];
-            v.load();
+          v.poster = posterArr[i];
+          const sources = v.querySelectorAll('source');
+          if (sources.length >= 2) {
+            if (sources[0].src !== new URL(webmArr[i], location.href).href) {
+              v.style.opacity = '0';
+              v.pause();
+              sources[0].src = webmArr[i];
+              sources[1].src = mp4Arr[i];
+              v.load();
+            }
           }
         });
       }
 
-      // Pre-load a specific video index so it's ready when needed
       function preloadVideo(idx) {
         const v = videos[idx];
         if (v && v.preload === 'none') {
@@ -890,7 +967,9 @@
         if (cycleTimer) clearInterval(cycleTimer);
         if (preloadTimer) clearTimeout(preloadTimer);
 
-        // Pre-load vid[1] after 5s (3s before the 8s switch)
+        // On slow network connection / SaveData, don't cycle videos to save data & CPU
+        if (isSlowNetwork()) return;
+
         preloadTimer = setTimeout(() => preloadVideo(1), 5000);
 
         cycleTimer = setInterval(() => {
@@ -903,10 +982,8 @@
           videos[next].play().catch(() => {});
           current = next;
 
-          // Pre-load the one after next while current is visible
           setTimeout(() => preloadVideo(afterNext), 3000);
 
-          // Pause & reset previous after fade completes
           setTimeout(() => {
             videos[prev].pause();
             videos[prev].currentTime = 0;
@@ -915,14 +992,17 @@
       }
 
       function init() {
-        const srcs = isMobile() ? mobileSrcs : desktopSrcs;
-        loadSrcSet(srcs);
-        setTimeout(startCycle, 200);
+        const mobile = isMobile();
+        const webm   = mobile ? mobileWebm : desktopWebm;
+        const mp4    = mobile ? mobileMp4 : desktopMp4;
+        const poster = mobile ? mobilePosters : desktopPosters;
+
+        updateVideoSources(webm, mp4, poster);
+        setTimeout(startCycle, 150);
       }
 
       init();
 
-      // Debounced resize — only re-init when crossing 640px breakpoint
       let wasMobile = isMobile();
       let resizeTimer;
       window.addEventListener('resize', () => {
